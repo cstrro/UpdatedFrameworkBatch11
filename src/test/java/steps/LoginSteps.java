@@ -38,5 +38,9 @@ public class LoginSteps extends CommonMethods {
         closeBrowser();
     }
 
+    @When("user enters valid ess username and password")
+    public void user_enters_valid_ess_username_and_password() {
+        System.out.println("hello");
+    }
 
 }

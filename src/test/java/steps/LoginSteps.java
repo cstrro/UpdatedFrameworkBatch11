@@ -16,7 +16,7 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters valid admin username and password")
     public void user_enters_valid_admin_username_and_password() {
-        WebElement username =  driver.findElement(By.id("txtUsername"));
+        WebElement username = driver.findElement(By.id("txtUsername"));
         username.sendKeys("Admin");
         WebElement password = driver.findElement(By.id("txtPassword"));
         password.sendKeys("Hum@nhrm123");
@@ -32,4 +32,11 @@ public class LoginSteps extends CommonMethods {
     public void admin_user_is_successfully_logged_in() {
         System.out.println("Test passed");
     }
+
+    @Then("user close the browser")
+    public void user_close_the_browser() {
+        closeBrowser();
+    }
+
+
 }

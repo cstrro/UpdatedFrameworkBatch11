@@ -1,5 +1,6 @@
 Feature: US-12345 Employee search
 
+  @regression
   Scenario: Search employee by id
     Given user is navigated to HRMS application
     When user enters valid admin username and password
@@ -11,6 +12,7 @@ Feature: US-12345 Employee search
     Then user see employee information is displayed
     Then user close the browser
 
+   @regression
   Scenario: Search employee by name
     Given user is navigated to HRMS application
     When user enters valid admin username and password

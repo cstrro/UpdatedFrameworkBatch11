@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         //features we use to provide the path of all the feature files
-        features = "src/test/resources/features/AddEmployee.feature",
+        features = "src/test/resources/features/",
         //glue is where we find implementations for gherkin steps
         //we provide the path of package where we defined all the steps
         glue = "steps",
@@ -18,7 +18,11 @@ import org.junit.runner.RunWith;
         dryRun = false,
         //it means the console output for cucumber test is having some irrelavant information
         //when we set it to true, it simply removes all the irrelevant information from the console
-        monochrome = true
+        monochrome = true,
+
+        //tags will identify the scenario based on the tag we provide to the feature file
+        tags = "@regression",
+        plugin = {"pretty", "html:target/cucumber.html"}
 
 )
 

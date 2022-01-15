@@ -94,3 +94,13 @@ then - result
 Step definition - to implement the code for the steps written in feature file, we use step definitions
 
 Runner class -
+
+features,
+glue,
+dryrun
+monochrome
+tags
+plugins
+strict
+
+background - it applicable only for one feature file, here we add common steps among all the scenarios

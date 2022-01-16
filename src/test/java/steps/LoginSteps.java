@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
+import utils.ConfigReader;
 
 public class LoginSteps extends CommonMethods {
 
@@ -17,9 +18,9 @@ public class LoginSteps extends CommonMethods {
     @When("user enters valid admin username and password")
     public void user_enters_valid_admin_username_and_password() {
         WebElement username = driver.findElement(By.id("txtUsername"));
-        username.sendKeys("Admin");
+        username.sendKeys(ConfigReader.getPropertyValue("username"));
         WebElement password = driver.findElement(By.id("txtPassword"));
-        password.sendKeys("Hum@nhrm123");
+        password.sendKeys(ConfigReader.getPropertyValue("password"));
     }
 
     @When("user clicks on login button")

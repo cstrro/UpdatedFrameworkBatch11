@@ -38,4 +38,24 @@ public class AddEmployeeSteps extends CommonMethods {
         System.out.println("Employee added succesfully");
     }
 
+    @When("user enters {string} {string} and {string}")
+    public void user_enters_and(String firstName, String middleName, String lastName) {
+        WebElement firstNameLoc = driver.findElement(By.id("firstName"));
+        firstNameLoc.sendKeys(firstName);
+        WebElement lastNameLoc = driver.findElement(By.id("lastName"));
+        lastNameLoc.sendKeys(lastName);
+        WebElement middleNameLoc = driver.findElement(By.id("middleName"));
+        middleNameLoc.sendKeys(middleName);
+    }
+
+    @When("user enters direct data {string} {string} and {string}")
+    public void user_enters_direct_data_and(String firstName, String middleName, String lastName) {
+        WebElement firstNameLoc = driver.findElement(By.id("firstName"));
+        firstNameLoc.sendKeys(firstName);
+        WebElement lastNameLoc = driver.findElement(By.id("lastName"));
+        lastNameLoc.sendKeys(lastName);
+        WebElement middleNameLoc = driver.findElement(By.id("middleName"));
+        middleNameLoc.sendKeys(middleName);
+    }
+
 }

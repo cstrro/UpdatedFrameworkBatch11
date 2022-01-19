@@ -38,3 +38,7 @@ Feature: Add employees
     |test123  |MS        |test456 |
     |testabc  |MS        |testxyz |
     |test987  |MS        |test321 |
+
+   @excel
+   Scenario: Adding employees from excel file
+    When user adds multiple employees from excel file using "EmployeeData" sheet and verify the added employee

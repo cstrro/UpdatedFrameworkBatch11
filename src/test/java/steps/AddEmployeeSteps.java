@@ -89,7 +89,6 @@ public class AddEmployeeSteps extends CommonMethods {
            WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
            addEmployeeButton.click();
            Thread.sleep(3000);
-
         }
 
     }

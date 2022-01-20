@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.it.Ma;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
@@ -113,6 +114,9 @@ public class AddEmployeeSteps extends CommonMethods {
             WebElement middleNameLoc = driver.findElement(By.id("middleName"));
             middleNameLoc.sendKeys(mapNewEmp.get("MiddleName"));
 
+            WebElement empId = driver.findElement(By.id("employeeId"));
+            String empIdValue = empId.getAttribute("value");
+
             WebElement photo = driver.findElement(By.id("photofile"));
             photo.sendKeys(mapNewEmp.get("Photograpgh"));
 
@@ -137,6 +141,29 @@ public class AddEmployeeSteps extends CommonMethods {
             //grab emp id while adding the employee
             //search it in the employee list
             //use for loop to compare the values
+
+            WebElement empList = driver.findElement(By.id("menu_pim_viewEmployeeList"));
+            empList.click();
+
+            WebElement empIdSearchField = driver.findElement(By.id("empsearch_id"));
+            empIdSearchField.sendKeys(empIdValue);
+
+            WebElement searchButton = driver.findElement(By.id("searchBtn"));
+            searchButton.click();
+
+            List<WebElement> rowData = driver.findElements(By.xpath("//table[@id='resultTable']/tbody/tr"));
+
+            for(int i=0; i<rowData.size(); i++){
+                System.out.println("I am inside my loop");
+                String rowText = rowData.get(i).getText();
+                System.out.println(rowText);
+
+                String expectedData =  empIdValue + " " + mapNewEmp.get("FirstName") + " " + mapNewEmp.get("MiddleName")
+                        + " " + mapNewEmp.get("LastName");
+                System.out.println(expectedData);
+                Assert.assertEquals(expectedData, rowText);
+
+            }
 
             //to come back again on add employee screen because hooks and background works just one time
             WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));

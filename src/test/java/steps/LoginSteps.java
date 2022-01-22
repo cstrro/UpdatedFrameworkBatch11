@@ -46,7 +46,7 @@ public class LoginSteps extends CommonMethods {
 
     @When("user enters valid ess username and password")
     public void user_enters_valid_ess_username_and_password() {
-        System.out.println("hello");
+        System.out.println("Hello");
     }
 
     @When("user enters different {string} and {string} and verify the {string} for all the combinations")
@@ -93,7 +93,7 @@ public class LoginSteps extends CommonMethods {
 
     @When("user is logged in with valid admin credentials")
     public void user_is_logged_in_with_valid_admin_credentials() {
-        loginPage.login(ConfigReader.getPropertyValue("username"), ConfigReader.getPropertyValue("password"));
+        loginPage.login("AdminAdmin", ConfigReader.getPropertyValue("password"));
     }
 
 

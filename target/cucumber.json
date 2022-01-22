@@ -1,0 +1,114 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": []
+      },
+      {
+        "start_timestamp": "2022-01-22T18:50:04.554Z",
+        "before": [
+          {
+            "result": {
+              "duration": 5931539500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.start()"
+            }
+          }
+        ],
+        "line": 13,
+        "name": "Valid admin login",
+        "description": "",
+        "id": "login-feature;valid-admin-login;;2",
+        "after": [
+          {
+            "result": {
+              "duration": 384622300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.end()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 394567200,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "user enters different \"Admin\" and \"Hum@nhrm123\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Admin\"",
+                  "offset": 22
+                },
+                {
+                  "val": "\"Hum@nhrm123\"",
+                  "offset": 34
+                }
+              ],
+              "location": "steps.LoginSteps.user_enters_different_and(java.lang.String,java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 3594200400,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "user clicks on login button",
+            "match": {
+              "location": "steps.LoginSteps.user_clicks_on_login_button()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 60993000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "\"Admin\" user is successfully logged in",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Admin\"",
+                  "offset": 0
+                }
+              ],
+              "location": "steps.LoginSteps.user_is_successfully_logged_in(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke"
+          },
+          {
+            "name": "@batch11"
+          }
+        ]
+      }
+    ],
+    "name": "Login feature",
+    "description": "",
+    "id": "login-feature",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/Login.feature",
+    "tags": []
+  }
+]

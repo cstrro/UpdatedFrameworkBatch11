@@ -12,7 +12,7 @@ Feature: US-12345 Employee search
     And user clicks on search button
     Then user see employee information is displayed
 
-   @test
+   @test1
   Scenario: Search employee by name
     When user enters valid employee name
     And user clicks on search button

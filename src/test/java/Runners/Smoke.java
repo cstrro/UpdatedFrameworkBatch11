@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
         monochrome = true,
 
         //tags will identify the scenario based on the tag we provide to the feature file
-        tags = "@sprint2",
+        tags = "@test",
         plugin = {"pretty", "html:target/cucumber.html"}
 )
 

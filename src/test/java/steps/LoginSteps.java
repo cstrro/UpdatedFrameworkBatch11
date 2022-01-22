@@ -67,9 +67,14 @@ public class LoginSteps extends CommonMethods {
     public void user_enters_different_and(String usernameValue, String passwordValue) {
        // LoginPage login = new LoginPage();
      //   WebElement username = driver.findElement(By.id("txtUsername"));
-        loginPage.usernameField.sendKeys(usernameValue);
+       // loginPage.usernameField.clear();
+       // loginPage.usernameField.sendKeys(usernameValue);
+
+        sendText(loginPage.usernameField,usernameValue);
        // WebElement password = driver.findElement(By.id("txtPassword"));
-       loginPage.passwordField.sendKeys(passwordValue);
+       // loginPage.passwordField.clear();
+      // loginPage.passwordField.sendKeys(passwordValue);
+       sendText(loginPage.passwordField, passwordValue);
     }
 
 
@@ -78,6 +83,11 @@ public class LoginSteps extends CommonMethods {
      //   DahsboardPage dash = new DahsboardPage();
         //WebElement dashboardMessage = driver.findElement(By.id("welcome"));
         Assert.assertTrue(dash.welcomeMessage.isDisplayed());
+    }
+
+    @When("user is logged in with valid admin credentials")
+    public void user_is_logged_in_with_valid_admin_credentials() {
+        loginPage.login(ConfigReader.getPropertyValue("username"), ConfigReader.getPropertyValue("password"));
     }
 
 

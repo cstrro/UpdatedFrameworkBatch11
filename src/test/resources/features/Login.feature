@@ -13,7 +13,7 @@ Feature: Login feature
       |Admin   |Hum@nhrm123     |Admin|
 
 
-  @regression @smoke @errorOne
+  @regression @smoke @errorOne @mvn
   Scenario: Valid ess login
     When user enters valid ess username and password
     And user clicks on login button

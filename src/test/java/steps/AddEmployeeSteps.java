@@ -6,9 +6,11 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.AddNewEmployeePage;
 import utils.CommonMethods;
 import utils.Constants;
 import utils.ExcelReading;
+import utils.GlobalVariables;
 
 import java.util.Iterator;
 import java.util.List;
@@ -126,46 +128,46 @@ public class AddEmployeeSteps extends CommonMethods {
 
     @When("user adds multiple employees from excel file using {string} sheet and verify the added employee")
     public void user_adds_multiple_employees_from_excel_file_using_sheet_and_verify_the_added_employee(String sheetName) throws InterruptedException {
-        List<Map<String, String>> newEmployees = ExcelReading.excelIntoListMap(Constants.TESTDATA_FILEPATH,sheetName);
+        List<Map<String, String>> newEmployees = ExcelReading.excelIntoListMap(Constants.TESTDATA_FILEPATH, sheetName);
 
-      //  AddNewEmployeePage addNewEmployeePage = new AddNewEmployeePage();
+        //  AddNewEmployeePage addNewEmployeePage = new AddNewEmployeePage();
 
         Iterator<Map<String, String>> itr = newEmployees.iterator();
         // it check whether we have element or not
-        while (itr.hasNext()){
+        while (itr.hasNext()) {
             // it returns the Key and value for employees
             Map<String, String> mapNewEmp = itr.next();
 
-          //  WebElement firstNameLoc = driver.findElement(By.id("firstName"));
+            //  WebElement firstNameLoc = driver.findElement(By.id("firstName"));
             addNewEmployeePage.firstName.sendKeys(mapNewEmp.get("FirstName"));
-          //  WebElement lastNameLoc = driver.findElement(By.id("lastName"));
+            //  WebElement lastNameLoc = driver.findElement(By.id("lastName"));
             addNewEmployeePage.lastName.sendKeys(mapNewEmp.get("LastName"));
             addNewEmployeePage.middleName.sendKeys(mapNewEmp.get("MiddleName"));
 
             //WebElement empId = driver.findElement(By.id("employeeId"));
             String empIdValue = addNewEmployeePage.empIdLoc.getAttribute("value");
 
-           // WebElement photo = driver.findElement(By.id("photofile"));
+            // WebElement photo = driver.findElement(By.id("photofile"));
             addNewEmployeePage.photograph.sendKeys(mapNewEmp.get("Photograpgh"));
 
-        //    WebElement checkBox = driver.findElement(By.id("chkLogin"));
-            if(!addNewEmployeePage.checkbox.isSelected()){
-              //  addNewEmployeePage.checkbox.click();
+            //    WebElement checkBox = driver.findElement(By.id("chkLogin"));
+            if (!addNewEmployeePage.checkbox.isSelected()) {
+                //  addNewEmployeePage.checkbox.click();
                 click(addNewEmployeePage.checkbox);
             }
 
-        //    WebElement username = driver.findElement(By.id("user_name"));
-        //    WebElement password = driver.findElement(By.id("user_password"));
-         //   WebElement confirmPassword = driver.findElement(By.id("re_password"));
+            //    WebElement username = driver.findElement(By.id("user_name"));
+            //    WebElement password = driver.findElement(By.id("user_password"));
+            //   WebElement confirmPassword = driver.findElement(By.id("re_password"));
 
-          //  addNewEmployeePage.createUsername.sendKeys(mapNewEmp.get("Username"));
+            //  addNewEmployeePage.createUsername.sendKeys(mapNewEmp.get("Username"));
             sendText(addNewEmployeePage.createUsername, mapNewEmp.get("Username"));
             sendText(addNewEmployeePage.createPassword, mapNewEmp.get("Password"));
             sendText(addNewEmployeePage.rePassword, mapNewEmp.get("Password"));
-          //  addNewEmployeePage.createPassword.sendKeys(mapNewEmp.get("Password"));
-          //  addNewEmployeePage.rePassword.sendKeys(mapNewEmp.get("Password"));
-           // WebElement saveButton = driver.findElement(By.id("btnSave"));
-           // addNewEmployeePage.saveButton.click();
+            //  addNewEmployeePage.createPassword.sendKeys(mapNewEmp.get("Password"));
+            //  addNewEmployeePage.rePassword.sendKeys(mapNewEmp.get("Password"));
+            // WebElement saveButton = driver.findElement(By.id("btnSave"));
+            // addNewEmployeePage.saveButton.click();
             click(addNewEmployeePage.saveButton);
 
             Thread.sleep(5000);
@@ -174,31 +176,31 @@ public class AddEmployeeSteps extends CommonMethods {
             //grab emp id while adding the employee
             //search it in the employee list
             //use for loop to compare the values
-        //    DahsboardPage dash = new DahsboardPage();
+            //    DahsboardPage dash = new DahsboardPage();
 
-          //  WebElement empList = driver.findElement(By.id("menu_pim_viewEmployeeList"));
-           // dash.employeeListButton.click();
+            //  WebElement empList = driver.findElement(By.id("menu_pim_viewEmployeeList"));
+            // dash.employeeListButton.click();
 
             click(dash.employeeListButton);
 
-          //  EmployeeListPage employeeListPage = new EmployeeListPage();
-          //  WebElement empIdSearchField = driver.findElement(By.id("empsearch_id"));
-          //  employeeListPage.idEmployeeSearch.sendKeys(empIdValue);
+            //  EmployeeListPage employeeListPage = new EmployeeListPage();
+            //  WebElement empIdSearchField = driver.findElement(By.id("empsearch_id"));
+            //  employeeListPage.idEmployeeSearch.sendKeys(empIdValue);
 
             sendText(employeeListPage.idEmployeeSearch, empIdValue);
 
-          //  WebElement searchButton = driver.findElement(By.id("searchBtn"));
-          //  employeeListPage.searchButton.click();
+            //  WebElement searchButton = driver.findElement(By.id("searchBtn"));
+            //  employeeListPage.searchButton.click();
             click(employeeListPage.searchButton);
 
             List<WebElement> rowData = driver.findElements(By.xpath("//table[@id='resultTable']/tbody/tr"));
 
-            for(int i=0; i<rowData.size(); i++){
+            for (int i = 0; i < rowData.size(); i++) {
                 System.out.println("I am inside my loop");
                 String rowText = rowData.get(i).getText();
                 System.out.println(rowText);
 
-                String expectedData =  empIdValue + " " + mapNewEmp.get("FirstName") + " " + mapNewEmp.get("MiddleName")
+                String expectedData = empIdValue + " " + mapNewEmp.get("FirstName") + " " + mapNewEmp.get("MiddleName")
                         + " " + mapNewEmp.get("LastName");
                 System.out.println(expectedData);
                 Assert.assertEquals(expectedData, rowText);
@@ -206,14 +208,30 @@ public class AddEmployeeSteps extends CommonMethods {
             }
 
             //to come back again on add employee screen because hooks and background works just one time
-           // WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
-          //  dash.addEmployeeButton.click();
+            // WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
+            //  dash.addEmployeeButton.click();
             click(dash.addEmployeeButton);
             Thread.sleep(3000);
 
         }
-
-
     }
+        @When("capture the employee id")
+        public void capture_the_employee_id() {
 
+            AddNewEmployeePage ad=new AddNewEmployeePage();
+           GlobalVariables.emp_id= ad.empIdLoc.getAttribute("value");
+           GlobalVariables.firstName=ad.firstName.getAttribute("value");
+            System.out.println("Emp_id "+GlobalVariables.emp_id);
+            System.out.println("firstname "+GlobalVariables.firstName);
+
+        }
+
+    @Then("verify the results from UI and Backends")
+    public void verify_the_results_from_ui_and_backends() {
+        String firstNameFromDb=GlobalVariables.tableData.get(0).get("emp_firstname");
+        //System.out.println("First name from database "+ firstNameFromDb);
+      //  System.out.println("First name from GUI "+GlobalVariables.firstName);
+
+        Assert.assertEquals(firstNameFromDb,GlobalVariables.firstName);
+    }
 }
